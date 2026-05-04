@@ -2,7 +2,34 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project
+## ⚠️ This is a fork — read this first
+
+This repository is **FLOW ZoomIt for Mac**, a fork of [ZoomacIt](https://github.com/07JP27/ZoomacIt) (Swift 6 / AppKit, GPL-3.0, by [@07JP27](https://github.com/07JP27)).
+
+The fork ships Korean-classroom defaults (handwriting font fallback, FLOW pen presets, bilingual docs) but **keeps the upstream architecture intact** so we can `git fetch upstream` and merge cleanly.
+
+- **Upstream:** https://github.com/07JP27/ZoomacIt
+- **Fork:** https://github.com/Demian-Yim/flow-zoomit-mac
+- **Sister project (Windows):** https://github.com/Demian-Yim/flow-zoomit (Microsoft Sysinternals ZoomIt v11.0 + FLOW Korean defaults)
+- **License:** GPL-3.0 (inherited)
+
+### What FLOW changed (minimal fork delta — keep this list short)
+
+- `src/ZoomacIt/Models/Settings.swift` — added `defaultFontFamily` key + `resolveFont(size:)` helper; default `fontWeight` flipped `medium` → `bold`
+- `src/ZoomacIt/Draw/TextInputController.swift` — three `NSFont.systemFont(...)` call sites → `Settings.shared.resolveFont(size:)`
+- `src/project.yml` — `bundleIdPrefix com.x07jp27 → kr.flowdesign`, `PRODUCT_NAME → "FLOW ZoomIt"`, `DEVELOPMENT_TEAM` placeholder
+- `src/ZoomacIt/Resources/Info.plist` — `CFBundleDisplayName`, `CFBundleLocalizations` (en, ko), bilingual `NSScreenCaptureUsageDescription`, `NSHumanReadableCopyright`
+- `README.md` (rewritten), `README_ko.md` (new), `docs/MAC_BUILD_HANDOFF.md` (new)
+
+### Critical: Korean IME hypothesis (Day 1 gate)
+
+The whole fork rests on this: macOS's `NSTextView` (which `TextInputController.placeTextField(at:)` uses) implements `NSTextInputClient` natively, so Hangul composition (조합) should work in the transparent Draw canvas — unlike Electron transparent windows on Windows, which broke 5 ZoomIt-Pro builds. **Validate on first Mac build.** See `docs/MAC_BUILD_HANDOFF.md` §4.
+
+When making future changes, prefer minimal-diff edits to keep the upstream merge surface small. Major reworks should be proposed upstream first.
+
+---
+
+## Project (upstream description)
 
 ZoomacIt — macOS menu bar app (clone of Windows ZoomIt). Pure **Swift 6 + AppKit**, no SwiftUI (except Settings UI). Targets **macOS 26+**. No external dependencies.
 

@@ -10,6 +10,8 @@ DerivedData/
 
 # Claude Code
 .claude/settings.local.json
+.workspace/
+**/.workspace/
 
 # macOS
 .DS_Store

@@ -74,6 +74,7 @@ final class Settings: @unchecked Sendable {
         // Text
         static let defaultFontSize = "textDefaultFontSize"
         static let fontWeight = "textFontWeight"
+        static let defaultFontFamily = "textDefaultFontFamily"
 
         // Zoom
         static let defaultZoomLevel = "zoomDefaultLevel"
@@ -110,7 +111,11 @@ final class Settings: @unchecked Sendable {
 
             // Text
             Keys.defaultFontSize: 24.0,
-            Keys.fontWeight: FontWeightOption.medium.rawValue,
+            Keys.fontWeight: FontWeightOption.bold.rawValue,
+            // FLOW default: empty string = use system default font.
+            // Set via Settings UI to e.g. "NanumBarunpenB" or "Apple SD Gothic Neo".
+            // Resolved via NSFont(name:size:) with graceful fallback chain in TextInputController.
+            Keys.defaultFontFamily: "",
 
             // Zoom
             Keys.defaultZoomLevel: 2.0,
@@ -189,8 +194,35 @@ final class Settings: @unchecked Sendable {
     }
 
     var fontWeight: FontWeightOption {
-        get { FontWeightOption(rawValue: defaults.string(forKey: Keys.fontWeight) ?? "") ?? .medium }
+        get { FontWeightOption(rawValue: defaults.string(forKey: Keys.fontWeight) ?? "") ?? .bold }
         set { defaults.set(newValue.rawValue, forKey: Keys.fontWeight) }
+    }
+
+    /// Optional custom font family (e.g. "NanumBarunpenB", "Apple SD Gothic Neo").
+    /// Empty string means: fall back to system font with the configured weight.
+    var defaultFontFamily: String {
+        get { defaults.string(forKey: Keys.defaultFontFamily) ?? "" }
+        set { defaults.set(newValue, forKey: Keys.defaultFontFamily) }
+    }
+
+    /// Resolves the configured font family + weight + size into an NSFont.
+    /// Fallback chain: requested family → Apple SD Gothic Neo (Korean) → system font with weight.
+    func resolveFont(size: CGFloat) -> NSFont {
+        let family = defaultFontFamily
+        let weight = fontWeight.nsFontWeight
+
+        // Try requested family first
+        if !family.isEmpty {
+            if let font = NSFont(name: family, size: size) {
+                return font
+            }
+        }
+        // Korean-friendly fallback (preinstalled on macOS)
+        if let korean = NSFont(name: "AppleSDGothicNeo-Bold", size: size) {
+            return korean
+        }
+        // Final fallback: system font with weight
+        return NSFont.systemFont(ofSize: size, weight: weight)
     }
 
     // MARK: - Zoom
@@ -259,7 +291,7 @@ final class Settings: @unchecked Sendable {
             Keys.breakHotkeyKeyCode, Keys.breakHotkeyModifiers,
             Keys.defaultPenColor, Keys.defaultPenWidth,
             Keys.highlighterOpacity, Keys.highlighterWidthMultiplier,
-            Keys.defaultFontSize, Keys.fontWeight,
+            Keys.defaultFontSize, Keys.fontWeight, Keys.defaultFontFamily,
             Keys.defaultZoomLevel, Keys.zoomAnimationEnabled,
             Keys.breakTimerDefaultDuration, Keys.breakTimerColor,
             Keys.breakTimerOpacity, Keys.breakTimerBackground,

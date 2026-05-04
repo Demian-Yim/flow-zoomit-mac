@@ -44,7 +44,7 @@ final class TextInputController: NSObject, NSTextViewDelegate {
         textView.drawsBackground = false
         textView.insertionPointColor = drawingState.activeColor.nsColor
         textView.textColor = drawingState.activeColor.nsColor
-        textView.font = NSFont.systemFont(ofSize: fontSize, weight: Settings.shared.fontWeight.nsFontWeight)
+        textView.font = Settings.shared.resolveFont(size: fontSize)
 
         // Allow the text view to grow as the user types
         textView.isVerticallyResizable = true
@@ -66,7 +66,7 @@ final class TextInputController: NSObject, NSTextViewDelegate {
     /// Adjust the font size (called from scroll wheel events).
     func adjustFontSize(delta: CGFloat) {
         fontSize = max(8, min(200, fontSize + delta))
-        textView?.font = NSFont.systemFont(ofSize: fontSize, weight: Settings.shared.fontWeight.nsFontWeight)
+        textView?.font = Settings.shared.resolveFont(size: fontSize)
     }
 
     /// Update the text color (called when color keys are pressed in text mode).
@@ -96,7 +96,7 @@ final class TextInputController: NSObject, NSTextViewDelegate {
         NSGraphicsContext.current = nsGraphicsContext
 
         let attrs: [NSAttributedString.Key: Any] = [
-            .font: textView.font ?? NSFont.systemFont(ofSize: fontSize),
+            .font: textView.font ?? Settings.shared.resolveFont(size: fontSize),
             .foregroundColor: textView.textColor ?? NSColor.red
         ]
 

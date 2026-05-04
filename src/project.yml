@@ -1,6 +1,9 @@
+# FLOW ZoomIt for Mac — forked from ZoomacIt (07JP27).
+# Internal target name kept as "ZoomacIt" to minimize diff from upstream.
+# User-visible product name is FLOW ZoomIt via PRODUCT_NAME below.
 name: ZoomacIt
 options:
-  bundleIdPrefix: com.x07jp27
+  bundleIdPrefix: kr.flowdesign
   deploymentTarget:
     macOS: "26.0"
   xcodeVersion: "26.0"
@@ -22,12 +25,16 @@ targets:
       base:
         INFOPLIST_FILE: ZoomacIt/Resources/Info.plist
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        PRODUCT_NAME: ZoomacIt
+        # User-visible app name. Keep target name (ZoomacIt) but ship as "FLOW ZoomIt".
+        PRODUCT_NAME: "FLOW ZoomIt"
         COMBINE_HIDPI_IMAGES: true
         LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
         CODE_SIGN_STYLE: Manual
         CODE_SIGN_IDENTITY: "Apple Development"
-        DEVELOPMENT_TEAM: T74PC5F324
+        # IMPORTANT: Replace with your own Apple Developer Team ID before building.
+        # The upstream value (T74PC5F324) belongs to 07JP27 and will not work for you.
+        # Or set DEVELOPMENT_TEAM via xcconfig / environment variable.
+        DEVELOPMENT_TEAM: REPLACE_WITH_YOUR_TEAM_ID
 
   ZoomacItTests:
     type: bundle.unit-test
@@ -39,8 +46,8 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: true
-        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/ZoomacIt.app/Contents/MacOS/ZoomacIt"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/FLOW ZoomIt.app/Contents/MacOS/FLOW ZoomIt"
         BUNDLE_LOADER: "$(TEST_HOST)"
         CODE_SIGN_STYLE: Manual
         CODE_SIGN_IDENTITY: "Apple Development"
-        DEVELOPMENT_TEAM: T74PC5F324
+        DEVELOPMENT_TEAM: REPLACE_WITH_YOUR_TEAM_ID

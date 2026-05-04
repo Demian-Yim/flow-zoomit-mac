@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLOW ZoomIt for Mac — 정보 / About</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --soft: #555;
+    --line: #e5e5e5;
+    --accent: #b91c6c;
+    --accent-soft: #fdf2f8;
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --warm: #f5f3ee;
+    --en-color: #6b7280;
+    --warning: #d97706;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', '맑은 고딕', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    padding: 60px 20px;
+  }
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 56px 56px 44px;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+  }
+  .lang-toggle {
+    position: sticky;
+    top: 12px;
+    text-align: right;
+    margin-bottom: 8px;
+    z-index: 10;
+  }
+  .lang-toggle button {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 6px;
+  }
+  .lang-toggle button.active { background: var(--accent); color: white; }
+
+  .brand {
+    font-family: 'Apple SD Gothic Neo', sans-serif;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .sub { color: var(--soft); font-size: 15px; margin-bottom: 36px; }
+  .en { color: var(--en-color); font-size: 13px; font-style: italic; display: block; margin-top: 4px; }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 36px 0 14px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  p, li { color: var(--ink); font-size: 15px; }
+  ul { margin: 8px 0 0 20px; }
+  ul li { margin-bottom: 6px; }
+
+  .why {
+    background: var(--warm);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 12px;
+    font-size: 15px;
+  }
+
+  .pill {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .pill.warn {
+    background: #fff8e6;
+    color: var(--warning);
+  }
+
+  body.en-only .ko { display: none; }
+  body.ko-only .en { display: none; }
+  body.ko-only .en-line { display: none; }
+
+  .keys {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 6px 16px;
+    margin-top: 12px;
+    font-size: 14.5px;
+  }
+  .keys b {
+    font-family: ui-monospace, 'Consolas', monospace;
+    background: var(--accent-soft);
+    color: var(--accent);
+    text-align: center;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    align-self: start;
+  }
+
+  .safety-card {
+    background: #fff8e6;
+    border-left: 4px solid var(--warning);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin-top: 14px;
+    font-size: 14.5px;
+    line-height: 1.7;
+  }
+  .safety-card code {
+    background: #fef3c7;
+    color: #78350f;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: ui-monospace, 'Consolas', monospace;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .safety-card strong { color: #92400e; }
+  .safety-card .recovery code { background: #d1fae5; color: #065f46; }
+
+  .links a {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin: 4px 4px 4px 0;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid var(--accent);
+  }
+  .links a:hover { background: var(--accent); color: white; }
+
+  footer {
+    margin-top: 52px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--soft);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  footer .name { color: var(--ink); font-weight: 700; font-size: 16px; }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .copyright { margin-top: 12px; font-size: 12.5px; color: #999; }
+
+  @media (max-width: 720px) {
+    body { padding: 24px 12px; }
+    .wrap { padding: 32px 24px; }
+    h1 { font-size: 28px; }
+    .keys { grid-template-columns: 130px 1fr; }
+  }
+</style>
+</head>
+<body class="bilingual">
+
+<div class="wrap">
+
+  <div class="lang-toggle">
+    <button id="bothBtn" class="active" onclick="setLang('bilingual')">한 + EN</button>
+    <button id="koBtn"   onclick="setLang('ko-only')">한국어만</button>
+    <button id="enBtn"   onclick="setLang('en-only')">English only</button>
+  </div>
+
+  <div class="brand">FLOW: AX 디자인연구소</div>
+  <h1>🍎 FLOW ZoomIt for Mac <span class="pill warn">v0.1 fork</span></h1>
+  <div class="sub">
+    <span class="ko">한국어 강의·워크숍·코칭을 위한 macOS 화면 강조 도구 — ZoomacIt 포크에 FLOW 한국어 디폴트 적용</span>
+    <span class="en">Korean-friendly macOS screen-annotation tool — a fork of ZoomacIt with FLOW handwriting font defaults and bilingual UX</span>
+  </div>
+
+  <h2><span class="ko">⚠️ 현재 상태</span><span class="en">⚠️ Status</span></h2>
+  <p class="why">
+    <span class="ko">
+      이건 <strong>v0.1 첫 빌드</strong>입니다. Mac 환경에서 빌드·서명·한글 IME 검증이 남아 있습니다.
+      Windows 버전(<a href="https://github.com/Demian-Yim/flow-zoomit">flow-zoomit</a>)의 자매 프로젝트.
+      ZoomacIt 의 모든 핵심 엔지니어링 크레딧은 <a href="https://github.com/07JP27/ZoomacIt">@07JP27</a> 께 갑니다.
+    </span>
+    <span class="en">
+      This is the <strong>v0.1 first build</strong>. Build / sign / Korean IME validation on a Mac is still pending.
+      Sibling project to the Windows version (<a href="https://github.com/Demian-Yim/flow-zoomit">flow-zoomit</a>).
+      All upstream ZoomacIt engineering credit goes to <a href="https://github.com/07JP27/ZoomacIt">@07JP27</a>.
+    </span>
+  </p>
+
+  <h2><span class="ko">왜 만들었나</span><span class="en">Why this exists</span></h2>
+  <p>
+    <span class="ko">
+      Microsoft Sysinternals ZoomIt 은 Windows 전용입니다. macOS 사용자는 한국어 강의용 화면 강조 도구를 직접 찾아야 했습니다.
+      <br><br>
+      마침 <strong>@07JP27</strong> 의 오픈소스 <a href="https://github.com/07JP27/ZoomacIt">ZoomacIt</a> (Swift 6 + AppKit 네이티브) 이
+      ZoomIt 의 정신적 클론으로 활발히 개발 중입니다 (v0.5.0, 2026-03). 이를 GPL-3.0 라이선스 하에 포크해
+      <strong>한국어 강의 디폴트</strong>(손글씨 폰트 fallback chain·6색 펜 팔레트·B/W 안전 가이드·양국어 문서)를
+      입혀 FLOW ZoomIt for Mac 을 만들었습니다.
+    </span>
+    <span class="en">
+      Microsoft never ported ZoomIt to macOS. Korean trainers on Mac had no equivalent.
+      <br><br>
+      <strong>@07JP27</strong>'s open-source <a href="https://github.com/07JP27/ZoomacIt">ZoomacIt</a> (Swift 6 + AppKit, native macOS) is
+      a spiritual clone of Windows ZoomIt and actively developed (v0.5.0, March 2026). Forked under GPL-3.0 with
+      <strong>Korean classroom defaults</strong> — handwriting-font fallback chain, full pen palette, B/W safety
+      guidance, bilingual docs.
+    </span>
+  </p>
+
+  <h2><span class="ko">단축키</span><span class="en">Hotkeys</span></h2>
+  <div class="keys">
+    <b>⌃1</b><span><span class="ko">정적 줌</span><span class="en">Static Zoom</span></span>
+    <b>⌃2</b><span><span class="ko">그리기 모드</span><span class="en">Draw mode</span></span>
+    <b>⌃3</b><span><span class="ko">휴식 타이머</span><span class="en">Break Timer</span></span>
+    <b>R G B Y O P</b><span><span class="ko">펜 색상: 빨강·초록·파랑·노랑·주황·핑크</span><span class="en">Pen color: Red Green Blue Yellow Orange Pink</span></span>
+    <b>T</b><span><span class="ko">텍스트 모드 (한글 입력 가능)</span><span class="en">Text mode (Korean input)</span></span>
+    <b>B / W</b><span><span class="ko">⚠️ 검정·흰 캔버스 덮어쓰기 — ⌘Z 로 취소</span><span class="en">⚠️ Blank black/white canvas — ⌘Z to undo</span></span>
+    <b>E</b><span><span class="ko">전체 지우기</span><span class="en">Erase all</span></span>
+    <b>⌘Z</b><span><span class="ko">되돌리기</span><span class="en">Undo</span></span>
+    <b>Esc</b><span><span class="ko">그리기 종료</span><span class="en">Exit draw mode</span></span>
+  </div>
+
+  <h2><span class="ko">⚠️ B/W 캔버스 덮어쓰기 주의 (Windows 와 동일)</span><span class="en">⚠️ B/W canvas-blank gotcha (same as Windows)</span></h2>
+  <div class="safety-card">
+    <p>
+      <span class="ko">
+        그리기 모드(⌃2)에서 <strong>T 를 누르기 전</strong>에 한국어 IME 로 바꾸면, 첫 자모 ㅈ(=<code>w</code>) / ㅠ(=<code>b</code>) 가 캔버스 전체를 덮어버립니다.
+      </span>
+      <span class="en">
+        In Draw mode (⌃2), pressing standalone <code>B</code>/<code>W</code> blanks the canvas. If Korean IME is on <strong>before</strong> pressing <code>T</code>, the first Hangul jamo (ㅈ=<code>w</code> / ㅠ=<code>b</code>) will trigger this.
+      </span>
+    </p>
+    <p style="margin-top:10px">
+      <strong>✅ <span class="ko">안전 순서</span><span class="en">Safe order</span>:</strong>
+      <code>⌃2</code> → <code>T</code> → <span class="ko">캔버스 클릭</span><span class="en">click canvas</span> → <code>한/영</code> → <span class="ko">한글 입력</span><span class="en">type Korean</span>
+    </p>
+    <p class="recovery" style="margin-top:6px">
+      <strong>🆘 <span class="ko">복구</span><span class="en">Recovery</span>:</strong>
+      <code>⌘Z</code> <span class="ko">한 번</span><span class="en">once</span>
+    </p>
+  </div>
+
+  <h2><span class="ko">FLOW 디폴트 (업스트림 대비 변경점)</span><span class="en">FLOW defaults (delta vs upstream)</span></h2>
+  <div class="keys">
+    <b>Bundle ID</b><span>kr.flowdesign.ZoomacIt</span>
+    <b><span class="ko">표시 이름</span><span class="en">Display name</span></b><span>FLOW ZoomIt</span>
+    <b><span class="ko">기본 폰트</span><span class="en">Default font</span></b><span><span class="ko">Apple SD Gothic Neo Bold (한국어 기본 fallback)</span><span class="en">Apple SD Gothic Neo Bold (Korean fallback)</span></span>
+    <b><span class="ko">폰트 가중치</span><span class="en">Font weight</span></b><span>Bold</span>
+    <b><span class="ko">펜 색상</span><span class="en">Pen colors</span></b><span><span class="ko">6색 (Windows 와 동일)</span><span class="en">6 colors (same as Windows)</span></span>
+    <b><span class="ko">라이선스</span><span class="en">License</span></b><span>GPL-3.0 (<span class="ko">업스트림에서 상속</span><span class="en">inherited</span>)</span>
+  </div>
+
+  <h2><span class="ko">시작하기</span><span class="en">Get started</span></h2>
+  <p class="links">
+    <a href="https://github.com/Demian-Yim/flow-zoomit-mac" target="_blank">📂 GitHub Repo</a>
+    <a href="https://github.com/Demian-Yim/flow-zoomit-mac/blob/main/docs/MAC_BUILD_HANDOFF.md" target="_blank">📋 Build Guide</a>
+    <a href="https://github.com/Demian-Yim/flow-zoomit-mac/blob/main/README_ko.md" target="_blank">🇰🇷 한국어 README</a>
+    <a href="https://github.com/07JP27/ZoomacIt" target="_blank">⭐ Upstream ZoomacIt</a>
+    <a href="https://github.com/Demian-Yim/flow-zoomit" target="_blank">🪟 Windows 버전</a>
+  </p>
+
+  <h2><span class="ko">크레딧</span><span class="en">Credits</span></h2>
+  <ul>
+    <li><strong><span class="ko">원작</span><span class="en">Upstream</span>:</strong> <a href="https://github.com/07JP27/ZoomacIt">ZoomacIt by 07JP27</a> — Swift 6/AppKit native macOS menu bar app inspired by Sysinternals ZoomIt. <span class="ko">모든 핵심 엔지니어링 크레딧은 여기로.</span><span class="en">All core engineering credit goes here.</span></li>
+    <li><strong><span class="ko">FLOW 포크</span><span class="en">FLOW fork</span>:</strong> <a href="https://flowdesign.ai.kr">FLOW: AX 디자인연구소</a> by <span class="ko">임정훈 소장</span><span class="en">Junghoon Lim, Director · AI Coordinator</span></li>
+    <li><strong><span class="ko">영감</span><span class="en">Inspiration</span>:</strong> Microsoft Sysinternals ZoomIt for Windows — <span class="ko">20여 년간 강의·발표 도구의 표준</span><span class="en">the original screen-annotation tool that made every classroom presenter's life easier for 20+ years</span></li>
+  </ul>
+
+  <footer>
+    <div class="name">FLOW: AX 디자인연구소 — FLOW: AX Design Lab</div>
+    <div><span class="ko">by AI 코디네이터 임정훈 소장</span><span class="en">by Junghoon Lim, Director · AI Coordinator</span></div>
+    <div>🌐 <a href="https://flowdesign.ai.kr" target="_blank">https://flowdesign.ai.kr</a></div>
+    <div class="copyright">© 2026 FLOW: AX 디자인연구소 · FLOW: AX Design Lab — fork content. Upstream code © 2025–2026 07JP27 (GPL-3.0).</div>
+  </footer>
+
+</div>
+
+<script>
+  function setLang(mode) {
+    document.body.className = mode;
+    document.getElementById('bothBtn').classList.toggle('active', mode === 'bilingual');
+    document.getElementById('koBtn').classList.toggle('active', mode === 'ko-only');
+    document.getElementById('enBtn').classList.toggle('active', mode === 'en-only');
+    try { localStorage.setItem('flowZoomItMacLang', mode); } catch(e) {}
+  }
+  try {
+    const saved = localStorage.getItem('flowZoomItMacLang');
+    if (saved && ['bilingual','ko-only','en-only'].includes(saved)) setLang(saved);
+  } catch(e) {}
+</script>
+
+</body>
+</html>

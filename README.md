@@ -1,3 +1,14 @@
+---
+title: FLOW ZoomIt for Mac
+emoji: 🍎
+colorFrom: pink
+colorTo: indigo
+sdk: static
+pinned: false
+license: gpl-3.0
+short_description: Korean-friendly ZoomacIt fork for macOS lecturers
+---
+
 # FLOW ZoomIt for Mac
 
 > A Korean-friendly distribution of [**ZoomacIt**](https://github.com/07JP27/ZoomacIt) — a native macOS menu bar app inspired by Microsoft Sysinternals ZoomIt for Windows. Bundled with Korean handwriting font defaults, opinionated FLOW pen presets, and bilingual UX. Built for Korean trainers, coaches, and presenters.

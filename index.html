@@ -201,18 +201,73 @@
     <span class="en">Korean-friendly macOS screen-annotation tool — a fork of ZoomacIt with FLOW handwriting font defaults and bilingual UX</span>
   </div>
 
-  <h2><span class="ko">⚠️ 현재 상태</span><span class="en">⚠️ Status</span></h2>
-  <p class="why">
+  <h2><span class="ko">⚠️ 현재 상태 — 아직 다운로드용 .dmg 가 없습니다</span><span class="en">⚠️ Status — no .dmg yet</span></h2>
+  <p class="why" style="background:#fff8e6; border-left-color:#d97706;">
     <span class="ko">
-      이건 <strong>v0.1 첫 빌드</strong>입니다. Mac 환경에서 빌드·서명·한글 IME 검증이 남아 있습니다.
-      Windows 버전(<a href="https://github.com/Demian-Yim/flow-zoomit">flow-zoomit</a>)의 자매 프로젝트.
+      <strong>솔직하게 말씀드립니다.</strong> 이 저장소는 현재 <strong>소스 코드 포크 단계</strong>입니다.
+      <br><br>
+      ✅ <strong>완료된 것:</strong> ZoomacIt 포크, FLOW 한국어 디폴트 적용 (손글씨 폰트 fallback chain · 펜 굵기 · 6색 팔레트), Bundle ID, project.yml.
+      <br>
+      ⏳ <strong>아직 검증 안 된 것:</strong> macOS 에서의 실제 컴파일·실행 검증, 한글 IME 입력 테스트, .dmg 패키징, 코드 서명, Apple notarization.
+      <br><br>
+      Windows 버전(<a href="https://github.com/Demian-Yim/flow-zoomit">flow-zoomit</a>)이 안정화된 후, Mac 환경에서 Day 1 검증을 먼저 통과해야 v0.1 .dmg 가 나옵니다.
+      <strong>현재 다운로드 가능한 빌드는 없습니다</strong> — 진행 상황을 보시려면 GitHub Watch 를 추천합니다.
+      <br><br>
       ZoomacIt 의 모든 핵심 엔지니어링 크레딧은 <a href="https://github.com/07JP27/ZoomacIt">@07JP27</a> 께 갑니다.
     </span>
     <span class="en">
-      This is the <strong>v0.1 first build</strong>. Build / sign / Korean IME validation on a Mac is still pending.
-      Sibling project to the Windows version (<a href="https://github.com/Demian-Yim/flow-zoomit">flow-zoomit</a>).
+      <strong>Honest disclosure.</strong> This repo is currently at the <strong>source-fork stage</strong>.
+      <br><br>
+      ✅ <strong>Done:</strong> Forked ZoomacIt, applied FLOW Korean defaults (handwriting-font fallback chain, pen width, 6-color palette), bundle ID, project.yml.
+      <br>
+      ⏳ <strong>Not yet verified:</strong> actual compile/run on macOS, Korean IME input test in NSTextView, .dmg packaging, code-signing, Apple notarization.
+      <br><br>
+      Once the Windows version (<a href="https://github.com/Demian-Yim/flow-zoomit">flow-zoomit</a>) stabilizes, Day-1 verification on Mac must pass before v0.1 .dmg ships.
+      <strong>No downloadable build exists yet</strong> — Watch the GitHub repo for progress.
+      <br><br>
       All upstream ZoomacIt engineering credit goes to <a href="https://github.com/07JP27/ZoomacIt">@07JP27</a>.
     </span>
+  </p>
+
+  <h2><span class="ko">📖 만든 이의 이야기</span><span class="en">📖 Maker's note</span></h2>
+  <p>
+    <span class="ko">
+      반갑습니다. <strong>FLOW: AX 디자인연구소</strong> 임정훈 소장입니다.
+      Windows 용 <a href="https://github.com/Demian-Yim/flow-zoomit">FLOW ZoomIt</a> 을 만들고 나서
+      "맥북용도 만들어 주세요" 라는 요청을 여러 차례 받았습니다.
+      <br><br>
+      Microsoft 는 ZoomIt 을 macOS 로 포팅하지 않았기 때문에, Mac 강사·코치는 동급 도구가 없었습니다.
+      마침 <strong>@07JP27</strong> 님의 오픈소스 ZoomacIt (Swift 6 + AppKit 네이티브) 이
+      ZoomIt 의 정신적 클론으로 활발히 개발 중이어서, GPL-3.0 라이선스로 포크해
+      <strong>한국어 강의 디폴트</strong>를 입히는 방향으로 진행하고 있습니다.
+      <br><br>
+      Windows 버전 개발 과정에서 Electron + 자체 IME 로 5번 시도했다가 모두 실패했던 경험이 있어,
+      Mac 에서도 "Day 1 한글 IME 검증" 을 먼저 통과한 뒤 본격 빌드에 들어갑니다. 시간이 좀 걸리더라도
+      한국어 입력이 정상 작동하는 빌드만 내놓으려고 합니다.
+      <br><br>
+      많은 격려 감사합니다. 진행 상황은 GitHub 저장소에서 공유드릴게요.
+    </span>
+    <span class="en">
+      Hi, I'm <strong>Junghoon Lim</strong>, Director of <strong>FLOW: AX Design Lab</strong>.
+      After releasing the Windows-only <a href="https://github.com/Demian-Yim/flow-zoomit">FLOW ZoomIt</a>,
+      multiple Korean trainers asked for a Mac equivalent.
+      <br><br>
+      Microsoft never ported ZoomIt to macOS, so Mac-using lecturers and coaches had no direct counterpart.
+      <strong>@07JP27</strong>'s open-source ZoomacIt (Swift 6 + native AppKit) is a spiritual clone of ZoomIt
+      and actively developed, so I'm forking it under GPL-3.0 and layering FLOW Korean defaults on top.
+      <br><br>
+      During the Windows build I tried five Electron-based prototypes with custom Korean IMEs — all failed
+      because transparent Chromium windows are incompatible with Hangul composition. So for the Mac fork I'm
+      deliberately gating on a <strong>Day-1 Korean IME verification</strong> before any further work.
+      A working Korean input is non-negotiable.
+      <br><br>
+      Thank you for the encouragement. I'll share progress here on the repo.
+    </span>
+  </p>
+
+  <p style="margin-top:18px;">
+    📜 <span class="ko">Windows 버전 전체 후기:</span><span class="en">Full retrospective (Windows version):</span>
+    <a href="https://github.com/Demian-Yim/flow-zoomit/blob/main/STORY.md">STORY.md</a>
   </p>
 
   <h2><span class="ko">왜 만들었나</span><span class="en">Why this exists</span></h2>
@@ -297,7 +352,6 @@
   <footer>
     <div class="name">FLOW: AX 디자인연구소 — FLOW: AX Design Lab</div>
     <div><span class="ko">by AI 코디네이터 임정훈 소장</span><span class="en">by Junghoon Lim, Director · AI Coordinator</span></div>
-    <div>🌐 <a href="https://flowdesign.ai.kr" target="_blank">https://flowdesign.ai.kr</a></div>
     <div class="copyright">© 2026 FLOW: AX 디자인연구소 · FLOW: AX Design Lab — fork content. Upstream code © 2025–2026 07JP27 (GPL-3.0).</div>
   </footer>
 
